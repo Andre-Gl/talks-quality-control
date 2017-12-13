@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>quality-control</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section><h1>Quality Control</h1></section>
+        <section><h2>Testing</h2></section>
+        <section>
+            <h2>Why write tests?</h2>
+            <p class="fragment">
+                To catch bugs in most common answers.
+            </p>
+            <p class="fragment">
+                While true, this is not the most important reason.
+            </p>
+        </section>
+        <section>
+            <h3>Why write tests? - To be more productive</h3>
+            <ul>
+                <li>Faster dev cycles</li>
+                <li>Better design</li>
+                <li>Higher quality</li>
+                <li>Making sure you are writing only what you need</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Why write tests? - On practice</h3>
+            <ul>
+                <li>Fast release cycles</li>
+                <li>Finite (no) QA resources</li>
+                <li>Large integrated codebase</li>
+                <li>Person modifying the code is rarely original author</li>
+            </ul>
+        </section>
+        <section>
+            <h3>What are the type of tests?</h3>
+            <p class="text-left">
+                <strong>Scope:</strong>
+                <br >
+                <span>unit,</span>
+                <span>integration,</span>
+                <span>functional</span>
+            </p>
+            <p class="text-left">
+                <strong>Performance:</strong>
+                <br >
+                <span>load,</span>
+                <span>stress</span>
+            </p>
+            <p class="text-left">
+                <strong>Perspective:</strong>
+                <br >
+                <span>Correctness,</span>
+                <span>Usability (General),</span>
+                <span>Usability (Specific axix: I18n, Accessibility)</span>
+            </p>
+            <p class="text-left">
+                <strong>Misc:</strong>
+                <br >
+                <span>Security,</span>
+                <span>...</span>
+            </p>
+        </section>
+        <section>
+            <h3>What do we test?</h3>
+            <p class="text-left">
+                <strong>Common cases:</strong>
+                <br >
+                <span>The happy paths,</span>
+                <span>In all their forms (E.g. wide chars Îñţérñåţîöñåļî~åţîöñ)</span>
+            </p>
+            <p class="text-left">
+                <strong>Edge cases</strong>
+                <br >
+                <span>empty/0 items,</span>
+                <span>no data,</span>
+                <span>wrong input/output</span>
+            </p>
+            <p class="text-left">
+                <strong>Failure cases:</strong>
+                <br >
+                <span>Failures in production lead to uncommon code</span>
+            </p>
+            <p class="text-left">
+                <strong>Anything that led to a bug:</strong>
+                <br >
+                <span>Once it's fixed, you want it to stay fixed</span>
+            </p>
+            <p class="text-left">
+                <strong>Ambiguous cases</strong>
+                <br >
+            </p>
+        </section>
+        <section>
+            <h3>Properties of a good test</h3>
+            <ul>
+                <li>Each test method exercises one thing</li>
+                <li>Comprehensive</li>
+                <li>Deterministic</li>
+                <li>Hermetic</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Properties of a good unit tests</h3>
+            <ul>
+                <li>Tests the "smallest" component possible</li>
+                <li>Ideally each test exercises one path through one method</li>
+                <li>Fast (< 10ms most of the time)</li>
+                <li>No calls to a database, bigtable etc.</li>
+                <li>Limited or no FileIO</li>
+                <li>No sockets except to your own process</li>
+                <li>No calls to external slow functions</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Properties of good integration test</h3>
+            <ul>
+                <li>Tests interaction between components</li>
+                <li>Ideally each test exercises the interaction between exactly two components</li>
+                <li>Look for places where you used “stunt doubles” in unit tests. These are paths you haven’t tested yet</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Properties of good integration test</h3>
+            <img src="https://i.redd.it/wxfszl51fdzz.gif" alt="">
+        </section>
+        <section>
+            <h3>Properties of good e2e test</h3>
+            <ul>
+                <li>Tests the system end to end</li>
+                <li>Functional testing everything is not possible  (combinatorial explosion)</li>
+                <li>Stability matters, and is expensive</li>
+                <li>Choose Functional tests that add confidence. Sample goals -- after executing all functional tests:
+                    <ol>
+                        <li>Every page was loaded at least once</li>
+                        <li>Every subsystem was executed at least once</li>
+                    </ol>
+                </li>
+                <li>Don't forget to load/stress/performance tests</li>
+            </ul>
+        </section>
+        <section>
+            <img style="float: right" src="assets/img/1.png" alt="">
+            <table>
+                <thead>
+                    <tr>
+                        <th><small>Featrure</small></th>
+                        <th width="350" align="right"><small>Unit .. Functional</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><small>Speed</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <img style="float: right" src="assets/img/2.png" alt="">
+            <table>
+                <thead>
+                    <tr>
+                        <th><small>Featrure</small></th>
+                        <th width="350" align="right"><small>Unit .. Functional</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><small>Speed</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Isolation</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <img style="float: right" src="assets/img/3.png" alt="">
+            <table>
+                <thead>
+                    <tr>
+                        <th><small>Featrure</small></th>
+                        <th width="350" align="right"><small>Unit .. Functional</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><small>Speed</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Isolation</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Confidence in parts</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <img style="float: right" src="assets/img/4.png" alt="">
+            <table>
+                <thead>
+                    <tr>
+                        <th><small>Featrure</small></th>
+                        <th width="350" align="right"><small>Unit .. Functional</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><small>Speed</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Isolation</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Confidence in parts</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Confidence in system</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,90 C50,100 160,50 190,0"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <img style="float: right" src="assets/img/5.png" alt="">
+            <table>
+                <thead>
+                    <tr>
+                        <th><small>Featrure</small></th>
+                        <th width="350" align="right"><small>Unit .. Functional</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><small>Speed</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Isolation</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Confidence in parts</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Confidence in system</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,90 C50,100 160,50 190,0"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><small>Fragility</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,90 C50,100 160,50 190,0"  fill="transparent" stroke="red" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h3>Tests allocation</h3>
+            <img src="https://2.bp.blogspot.com/-YTzv_O4TnkA/VTgexlumP1I/AAAAAAAAAJ8/57-rnwyvP6g/s1600/image02.png" alt="">
+        </section>
+        <section>
+            <h3>Testing strategy</h3>
+            <ul>
+                <li><strong>Before integrating</strong>
+                    <br >
+                    Pros: greener build. Cons: much slower dev.
+                </li>
+                <li><strong>After integrating</strong>
+                    <br >
+                    Pros: faster dev. Cons: build less green. Buildcops presence required.
+                </li>
+                <li><strong>Combined</strong>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Code Review</h2>
+        </section>
+        <section>
+            <blockquote>
+                <p>A human reviewer can understand the context for certain coding practices, and make a serious risk estimate that accounts for both the likelihood of attack and the business impact of a breach.</p>
+                <p><q>- OWASP<q></p>
+            </blockquote>
+        </section>
+        <section>
+            <h3>Properties of good code review</h3>
+            <p>Every code line integrated into master branch should be reviewed by the person other than the one who wrote it.</p>
+        </section>
+        <section>
+            <h3>Type of reviewers</h3>
+            <ul>
+                <li><strong>Module/App Owners:</strong>
+                    <br>
+                    <span>Every module should have owners. Every integration should be reviewed by owners.</span>
+                </li>
+                <li><strong>Readability:</strong>
+                    <br>
+                    <span>Module is not bound to one particular language. It can consist from multiple code pieces from different systems or configs. Every change should be reviewed the person who competent in the language (aka checked for readability).</span>
+                </li>
+            </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      var role = getParameterByName('role');
+      role = role === 'master' ? role : 'client';
+
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        multiplex: {
+          secret: '15125406065727641171',
+          id: 'c13c36d1b176733c',
+          url: 'https://reveal.302.at'
+        },
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'assets/lib/socket.io.min.js', async: true },
+          { src: 'plugin/multiplex/' + role + '.js', async: true },
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
