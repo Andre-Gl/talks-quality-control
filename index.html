@@ -36,7 +36,7 @@
             </p>
         </section>
         <section>
-            <h3>Why write tests? - To be more productive</h3>
+            <h3>Why write tests? - In theory</h3>
             <ul>
                 <li>Faster dev cycles</li>
                 <li>Better design</li>
@@ -55,27 +55,27 @@
         </section>
         <section>
             <h3>What are the type of tests?</h3>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Scope:</strong>
                 <br >
                 <span>unit,</span>
                 <span>integration,</span>
                 <span>functional</span>
             </p>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Performance:</strong>
                 <br >
                 <span>load,</span>
                 <span>stress</span>
             </p>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Perspective:</strong>
                 <br >
                 <span>Correctness,</span>
                 <span>Usability (General),</span>
                 <span>Usability (Specific axix: I18n, Accessibility)</span>
             </p>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Misc:</strong>
                 <br >
                 <span>Security,</span>
@@ -84,32 +84,28 @@
         </section>
         <section>
             <h3>What do we test?</h3>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Common cases:</strong>
                 <br >
                 <span>The happy paths,</span>
                 <span>In all their forms (E.g. wide chars Îñţérñåţîöñåļî~åţîöñ)</span>
             </p>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Edge cases</strong>
                 <br >
                 <span>empty/0 items,</span>
                 <span>no data,</span>
                 <span>wrong input/output</span>
             </p>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Failure cases:</strong>
                 <br >
                 <span>Failures in production lead to uncommon code</span>
             </p>
-            <p class="text-left">
+            <p class="text-left fragment">
                 <strong>Anything that led to a bug:</strong>
                 <br >
                 <span>Once it's fixed, you want it to stay fixed</span>
-            </p>
-            <p class="text-left">
-                <strong>Ambiguous cases</strong>
-                <br >
             </p>
         </section>
         <section>
@@ -124,40 +120,40 @@
         <section>
             <h3>Properties of a good unit tests</h3>
             <ul>
-                <li>Tests the "smallest" component possible</li>
-                <li>Ideally each test exercises one path through one method</li>
-                <li>Fast (< 10ms most of the time)</li>
-                <li>No calls to a database, bigtable etc.</li>
-                <li>Limited or no FileIO</li>
-                <li>No sockets except to your own process</li>
-                <li>No calls to external slow functions</li>
+                <li class="fragment">Tests the "smallest" component possible</li>
+                <li class="fragment">Ideally each test exercises one path through one method</li>
+                <li class="fragment">Fast (< 10ms most of the time)</li>
+                <li class="fragment">No calls to a database, bigtable etc.</li>
+                <li class="fragment">Limited or no FileIO</li>
+                <li class="fragment">No sockets except to your own process</li>
+                <li class="fragment">No calls to external slow functions</li>
             </ul>
         </section>
         <section>
-            <h3>Properties of good integration test</h3>
+            <h3>Properties of a good integration test</h3>
             <ul>
-                <li>Tests interaction between components</li>
-                <li>Ideally each test exercises the interaction between exactly two components</li>
-                <li>Look for places where you used “stunt doubles” in unit tests. These are paths you haven’t tested yet</li>
+                <li class="fragment">Tests interaction between components</li>
+                <li class="fragment">Ideally each test exercises the interaction between exactly two components</li>
+                <li class="fragment">Look for places where you used “stunt doubles” in unit tests. These are paths you haven’t tested yet</li>
             </ul>
         </section>
         <section>
-            <h3>Properties of good integration test</h3>
+            <h3>Properties of a good integration test</h3>
             <img src="https://i.redd.it/wxfszl51fdzz.gif" alt="">
         </section>
         <section>
-            <h3>Properties of good e2e test</h3>
+            <h3>Properties of a good e2e test</h3>
             <ul>
-                <li>Tests the system end to end</li>
-                <li>Functional testing everything is not possible  (combinatorial explosion)</li>
-                <li>Stability matters, and is expensive</li>
-                <li>Choose Functional tests that add confidence. Sample goals -- after executing all functional tests:
+                <li class="fragment">Tests the system end to end</li>
+                <li class="fragment">Functional testing everything is not possible  (combinatorial explosion)</li>
+                <li class="fragment">Stability matters, and is expensive</li>
+                <li class="fragment">Choose Functional tests that add confidence. Sample goals -- after executing all functional tests:
                     <ol>
                         <li>Every page was loaded at least once</li>
                         <li>Every subsystem was executed at least once</li>
                     </ol>
                 </li>
-                <li>Don't forget to load/stress/performance tests</li>
+                <li class="fragment">Don't forget to load/stress/performance tests</li>
             </ul>
         </section>
         <section>
@@ -192,14 +188,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><small>Speed</small></td>
-                        <td align="right">
-                            <svg height="100" width="200">
-                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
                         <td><small>Isolation</small></td>
                         <td align="right">
                             <svg height="100" width="200">
@@ -220,22 +208,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><small>Speed</small></td>
-                        <td align="right">
-                            <svg height="100" width="200">
-                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><small>Isolation</small></td>
-                        <td align="right">
-                            <svg height="100" width="200">
-                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
-                            </svg>
-                        </td>
-                    </tr>
                     <tr>
                         <td><small>Confidence in parts</small></td>
                         <td align="right">
@@ -258,30 +230,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><small>Speed</small></td>
-                        <td align="right">
-                            <svg height="100" width="200">
-                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><small>Isolation</small></td>
-                        <td align="right">
-                            <svg height="100" width="200">
-                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><small>Confidence in parts</small></td>
-                        <td align="right">
-                            <svg height="100" width="200">
-                                <path d="M0,0 C50,100 100,80 190,90"  fill="transparent" stroke="#1abc9c" stroke-width="5" />
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
                         <td><small>Confidence in system</small></td>
                         <td align="right">
                             <svg height="100" width="200">
@@ -294,6 +242,26 @@
         </section>
         <section>
             <img style="float: right" src="assets/img/5.png" alt="">
+            <table>
+                <thead>
+                    <tr>
+                        <th><small>Featrure</small></th>
+                        <th width="350" align="right"><small>Unit .. Functional</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><small>Fragility</small></td>
+                        <td align="right">
+                            <svg height="100" width="200">
+                                <path d="M0,90 C50,100 160,50 190,0"  fill="transparent" stroke="red" stroke-width="5" />
+                            </svg>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
             <table>
                 <thead>
                     <tr>
@@ -350,17 +318,48 @@
             <img src="https://2.bp.blogspot.com/-YTzv_O4TnkA/VTgexlumP1I/AAAAAAAAAJ8/57-rnwyvP6g/s1600/image02.png" alt="">
         </section>
         <section>
+            <h2>Verifying with "Goldens"</h2>
+        </section>
+        <section>
+            <h3>What is "Goldens"</h3>
+            <p>Golden is expected result of some program execution stored in a form of text (or JSON) file or as a screenshot of UI state.</p>
+        </section>
+        <section>
+            <h3>Examples of "Goldens"</h3>
+            <img style="float: right;" src="assets/img/YouTube-screenshot.jpg" alt="">
+            <img style="float: left; width: 400px;" src="assets/img/JSON-screenshot.png" alt="">
+        </section>
+        <section>
+            <p class="text-left">Giving the funciton the same input we expect exactly the same output that can be compared with stored "Golden"</p>
+            <p class="text-left fragment">"Goldens" from one system can be passed as input into anther systems and so on...</p>
+        </section>
+        <section>
+<pre><code data-trim data-noescape>
+var golden = TestUtils.readGolden("InputGoldenName");
+var result = ClassUnderTest.exec(golden);
+TestUtils.compareWithGolden(result, "OutputGoldenName");
+</code></pre>
+        </section>
+        <section>
+            <h3>Result of "Goldens"</h3>
+            <img src="assets/img/Diff-screenshot.png" alt="">
+        </section>
+        <section>
+            <h3>Result of "Goldens"</h3>
+            <img src="assets/img/Diff-visual-screenshot.png" alt="">
+        </section>
+        <section>
             <h3>Testing strategy</h3>
             <ul>
-                <li><strong>Before integrating</strong>
+                <li class="fragment"><strong>Before integrating</strong>
                     <br >
                     Pros: greener build. Cons: much slower dev.
                 </li>
-                <li><strong>After integrating</strong>
+                <li class="fragment"><strong>After integrating</strong>
                     <br >
                     Pros: faster dev. Cons: build less green. Buildcops presence required.
                 </li>
-                <li><strong>Combined</strong>
+                <li class="fragment"><strong>Combined</strong>
                 </li>
             </ul>
         </section>
@@ -380,11 +379,11 @@
         <section>
             <h3>Type of reviewers</h3>
             <ul>
-                <li><strong>Module/App Owners:</strong>
+                <li class="fragment"><strong>Module/App Owners:</strong>
                     <br>
                     <span>Every module should have owners. Every integration should be reviewed by owners.</span>
                 </li>
-                <li><strong>Readability:</strong>
+                <li class="fragment"><strong>Readability:</strong>
                     <br>
                     <span>Module is not bound to one particular language. It can consist from multiple code pieces from different systems or configs. Every change should be reviewed the person who competent in the language (aka checked for readability).</span>
                 </li>
