@@ -45,7 +45,7 @@
             </ul>
         </section>
         <section>
-            <h3>Why write tests? - On practice</h3>
+            <h3>Why write tests? - In reality</h3>
             <ul>
                 <li>Fast release cycles</li>
                 <li>Finite (no) QA resources</li>
@@ -375,6 +375,59 @@ TestUtils.compareWithGolden(result, "OutputGoldenName");
         <section>
             <h3>Properties of good code review</h3>
             <p>Every code line integrated into master branch should be reviewed by the person other than the one who wrote it.</p>
+        </section>
+        <section>
+            <h2>Hints for better code review</h2>
+        </section>
+        <section>
+            <h3>Discuss the goals of code reviews with your team.</h3>
+            <p>
+                <span class="color-green">spread knowledge</span><br/ >
+                <span class="color-green">learn codebase</span><br/ >
+                <span class="color-red">catch bugs</span><br/ >
+                <span class="color-red">enforce styling</span><br/ >
+            </p>
+        </section>
+        <section>
+            <h3>Visualize method call hierarchies.</h3>
+            <p class="text-left">This will help to take a look into the problem
+                that code is trying to solve under different angle.
+            </p>
+        </section>
+        <section>
+            <h3>Do code reviews as soon as you see the request.</h3>
+            <p class="text-left">Set a time limit to understand the changes.<br/>
+               Decided if you can approve review or send questions for clarification
+               after the limit reached.<br/>
+               Schedule a time for more details review.
+            </p>
+        </section>
+        <section>
+            <h3>Imagine how you would make this change before you read it.</h3>
+            <p class="text-left">Read the feature description first,
+                and try to make a list of the files you expect to change.
+            </p>
+        </section>
+        <section>
+            <h3>Read the change in a realistic development environment.</h3>
+            <p class="text-left">Try to pull the change onto your own machine so
+                that you can see compile errors, warnings, and test failures.
+            </p>
+        </section>
+        <section>
+            <h3>Always give approval, unless you can prove that there is a bug.</h3>
+            <p class="text-left">If you don’t feel qualified to give approval,
+                say it in those words and come up with a plan to get the right person.
+                Help them feel your good intentions by being very clear about what the next step is.
+            </p>
+        </section>
+        <section>
+            <h3>Run the app and try playing with the feature.</h3>
+            <p class="text-left">Chances are, if you run the app,
+                you will do something slightly different than what the author tried when
+                testing their change.<br/>
+                You may discover important cases they missed.
+            </p>
         </section>
         <section>
             <h3>Type of reviewers</h3>

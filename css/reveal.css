@@ -1398,6 +1398,14 @@ body {
     text-align: left;
 }
 
+.color-green {
+    color: green;
+}
+
+.color-red {
+    color: red;
+}
+
 .reveal section blockquote {
     width: 100%;
     text-align: left;
