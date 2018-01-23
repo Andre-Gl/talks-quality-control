@@ -25,12 +25,19 @@
     <div class="reveal">
       <div class="slides">
         <section><h1>Quality Control</h1></section>
+        <section>
+            <h2>Quality Control</h2>
+            <ul>
+                <li>testing</li>
+                <li>code review</li>
+            </ul>
+        </section>
         <section><h2>Testing</h2></section>
         <section>
             <h2>Why write tests?</h2>
-            <p class="fragment">
-                To catch bugs in most common answers.
-            </p>
+            <blockquote class="fragment">
+                To catch bugs!
+            </blockquote>
             <p class="fragment">
                 While true, this is not the most important reason.
             </p>
@@ -118,7 +125,7 @@
             </ul>
         </section>
         <section>
-            <h3>Properties of a good unit tests</h3>
+            <h3>Properties of a good <span class="color-green">unit</span> tests</h3>
             <ul>
                 <li class="fragment">Tests the "smallest" component possible</li>
                 <li class="fragment">Ideally each test exercises one path through one method</li>
@@ -130,7 +137,7 @@
             </ul>
         </section>
         <section>
-            <h3>Properties of a good integration test</h3>
+            <h3>Properties of a good <span class="color-green">integration</span> test</h3>
             <ul>
                 <li class="fragment">Tests interaction between components</li>
                 <li class="fragment">Ideally each test exercises the interaction between exactly two components</li>
@@ -142,7 +149,7 @@
             <img src="https://i.redd.it/wxfszl51fdzz.gif" alt="">
         </section>
         <section>
-            <h3>Properties of a good e2e test</h3>
+            <h3>Properties of a good <span class="color-green">functional</span> test</h3>
             <ul>
                 <li class="fragment">Tests the system end to end</li>
                 <li class="fragment">Functional testing everything is not possible  (combinatorial explosion)</li>
@@ -155,6 +162,9 @@
                 </li>
                 <li class="fragment">Don't forget to load/stress/performance tests</li>
             </ul>
+        </section>
+        <section>
+            <h2>Differences between tests</h2>
         </section>
         <section>
             <img style="float: right" src="assets/img/1.png" alt="">
@@ -321,7 +331,7 @@
             <h2>Verifying with "Goldens"</h2>
         </section>
         <section>
-            <h3>What is "Goldens"</h3>
+            <h3>What is "Golden"</h3>
             <p>Golden is expected result of some program execution stored in a form of text (or JSON) file or as a screenshot of UI state.</p>
         </section>
         <section>
@@ -330,8 +340,8 @@
             <img style="float: left; width: 400px;" src="assets/img/JSON-screenshot.png" alt="">
         </section>
         <section>
-            <p class="text-left">Giving the funciton the same input we expect exactly the same output that can be compared with stored "Golden"</p>
-            <p class="text-left fragment">"Goldens" from one system can be passed as input into anther systems and so on...</p>
+            <p class="text-left">Giving the program the same input we expect exactly the same output that can be compared with stored "Golden".</p>
+            <p class="text-left fragment">"Goldens" from one system can be passed as input into anther systems and so on.</p>
         </section>
         <section>
 <pre><code data-trim data-noescape>
@@ -369,7 +379,7 @@ TestUtils.compareWithGolden(result, "OutputGoldenName");
         <section>
             <blockquote>
                 <p>A human reviewer can understand the context for certain coding practices, and make a serious risk estimate that accounts for both the likelihood of attack and the business impact of a breach.</p>
-                <p><q>- OWASP<q></p>
+                <p><q>- Open Web Application Security Project<q></p>
             </blockquote>
         </section>
         <section>
@@ -441,6 +451,12 @@ TestUtils.compareWithGolden(result, "OutputGoldenName");
                     <span>Module is not bound to one particular language. It can consist from multiple code pieces from different systems or configs. Every change should be reviewed the person who competent in the language (aka checked for readability).</span>
                 </li>
             </ul>
+        </section>
+        <section>
+            <h2>Thank you!</h2>
+        </section>
+        <section>
+            <h2>Questions?</h2>
         </section>
       </div>
     </div>
